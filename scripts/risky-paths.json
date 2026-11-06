@@ -1,0 +1,16 @@
+{
+  "_doc": "Minimal risky-paths config for this unmanaged repo (no CI, no payroll/auth/DB). It exists so the local pre-push case-gate can read a config instead of failing closed. Patterns are JavaScript regexes on repo-relative POSIX paths.",
+  "label": "human-reviewed",
+  "categories": [
+    {
+      "name": "ci-and-protection",
+      "why": "workflow and gate files change what is checked before merge",
+      "patterns": ["^\\.github/", "^scripts/risky-paths\\.json$", "^\\.bb-risk$"]
+    },
+    {
+      "name": "secrets",
+      "why": "credentials must never be committed",
+      "patterns": ["(^|/)\\.env", "\\.pem$", "(^|/)credentials"]
+    }
+  ]
+}
